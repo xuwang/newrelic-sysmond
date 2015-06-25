@@ -16,7 +16,6 @@ fleetctl destroy newrelic-sysmond.service
 ```
 
 ## NewRelic Agent
-
 [Getting started](https://docs.newrelic.com/docs/server/new-relic-servers)  
-[Release Notes](https://docs.newrelic.com/docs/releases/linux_server/)
-[Monitoring docker with New Relict](http://newrelic.com/docker)
+[Release Notes](https://docs.newrelic.com/docs/releases/linux_server)  
+[Monitoring docker](http://newrelic.com/docker/)
