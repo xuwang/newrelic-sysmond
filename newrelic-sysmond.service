@@ -1,18 +1,22 @@
-[Unit]
-Description=newrelic-sysmond
+Unit]
+Description=Newrelic
 
 [Service]
 EnvironmentFile=/etc/environment
-TimeoutStartSec=20m
-ExecStartPre=/bin/sh -c "docker history rvaralda/newrelic-sysmond >/dev/null || docker pull rvaralda/newrelic-sysmond"
-ExecStartPre=/bin/sh -c "docker inspect newrelic-sysmond >/dev/null && docker rm -f newrelic-sysmond || true"
-ExecStart=/usr/bin/docker run --rm --name newrelic-sysmond -e NEW_RELIC_LICENSE_KEY=YOUR_NEW_RELIC_KEY -e CUSTOM_HOSTNAME=%H -e LABELS= -v /var/run/docker.sock:/var/run/docker.sock rvaralda/newrelic-sysmond
-ExecStopPost=-/usr/bin/docker stop newrelic-sysmond
-Restart=on-failure
-RestartSec=5
+EnvironmentFile=/home/core/newrelic/envvars
+
+TimeoutStartSec=0
+#ExecStartPre=/usr/bin/docker pull $IMAGE
+ExecStartPre=-/usr/bin/docker rm -f %n
+ExecStop=-/usr/bin/docker stop %n
+ExecStart=/bin/bash -c "docker run --rm --name %n --env-file=/home/core/newrelic/envvars $OPTS $IMAGE"
+ExecStopPost=/usr/bin/docker stop %n
+RestartSec=10
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
 
 [X-Fleet]
+MachineMetadata=role=hosting
 Global=true
