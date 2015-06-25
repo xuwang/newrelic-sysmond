@@ -3,22 +3,20 @@
 Run NewRelic server monitoring in a CoreOS fleet.
 
 ## Installation
-* Replace `YOUR_NEW_RELIC_KEY` in `newrelic-sysmond.service` with your NewRelic licence key.
+* Replace NEW_RELIC_LICENSE_KEY and IMAGE in `envvars` with your NewRelic licence key and image name. 
 * Optional Include Labels to `LABELS` variable in `newrelic-sysmond.service`.
-* Submit the monitoring agent into your fleet
+* Startthe monitoring agent into your fleet
 
 ```bash
-fleetctl submit newrelic-sysmond.service
 fleetctl start newrelic-sysmond.service
 ```
-
-## Dockerfile
-
-[![image](https://d207aa93qlcgug.cloudfront.net/img/icons/framed-icon-checked-repository.svg)](https://index.docker.io/u/johanneswuerbach/newrelic-sysmond/)
-
-[**Trusted Build**](https://index.docker.io/u/johanneswuerbach/newrelic-sysmond/)
+* Destroy the agent
+```bash
+fleetctl destroy newrelic-sysmond.service
+```
 
 ## NewRelic Agent
 
 [Getting started](https://docs.newrelic.com/docs/server/new-relic-servers)  
 [Release Notes](https://docs.newrelic.com/docs/releases/linux_server/)
+[Monitoring docker with New Relict](http://newrelic.com/docker)
