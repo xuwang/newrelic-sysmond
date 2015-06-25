@@ -5,7 +5,7 @@ Run NewRelic server monitoring in a CoreOS fleet.
 ## Installation
 * Check version
 ```
-docker run --rm xuwang/newrelic-sysmond-service nrsysmond -v
+docker run --rm xuwang/newrelic-sysmond nrsysmond -v
 ```
 * Replace NEW_RELIC_LICENSE_KEY and IMAGE in `envvars` with your NewRelic licence key and image name. 
 * Optional Include Labels to `LABELS` variable in `newrelic-sysmond.service`.
